@@ -4,12 +4,27 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+
     text-align: center;
 
     &__title {
-        font-size: 50px;
+        font-size: 60px;
         font-weight: 700;
-        margin-bottom: 10px;
+    }
+    .not-found__subtitle{
+        font-size: 20px;
+        margin-bottom: 30px;
+        color: #ffffff;
+        background-color: red;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #ff8d8d;
+        transition: 0.3s;
+        &:hover{
+            background-color: #ff3939;
+            color: #ffffff;
+            cursor: pointer;
+        }
     }
 
 }

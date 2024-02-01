@@ -28,10 +28,12 @@ export const Home: React.FC = () => {
             </div>
             <div className="content__items">
                 {items.map((pizza: PizzaBlocks, i: number) => (
-                    <PizzaBlock
-                        key={i}
-                        {...pizza}
-                    />
+                    <div className="content__item">
+                        <PizzaBlock
+                            key={i}
+                            {...pizza}
+                        />
+                    </div>
                 ))}
             </div>
         </>

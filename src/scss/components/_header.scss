@@ -9,7 +9,18 @@
     align-items: center;
     justify-content: space-between;
   }
-
+  &__pizza{
+    width: 250px;
+    @media (max-width: 580px)  {
+      width: 180px;
+    }
+    @media (max-width: 483px)  {
+      width: 150px;
+    }
+    @media (max-width: 415px)  {
+      width: 120px;
+    }
+  }
   &__logo {
     display: flex;
 

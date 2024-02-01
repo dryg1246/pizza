@@ -9,7 +9,7 @@ export const Header : React.FC = () => {
             <div className="container">
                 <div className="header__logo">
                     <Link to="/">
-                        <img width="250" src={pizzaLogo} alt="Pizza logo"/>
+                        <img className="header__pizza" src={pizzaLogo} alt="Pizza logo"/>
                     </Link>
                 </div>
                 <div className="header__cart">

@@ -134,6 +134,13 @@
     align-items: center;
     line-height: 23px;
     padding: 12px 25px;
+    @media (max-width: 483px)  {
+      padding: 10px 10px;
+    }
+    @media (max-width: 415px) {
+      padding: 7px 5px;
+    }
+
 
     svg {
       margin-right: 8px;
