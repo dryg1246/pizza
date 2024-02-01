@@ -1,4 +1,5 @@
 import React from "react";
+import {currency} from "../../assets/constans";
 let pizzaLogo = require("../../assets/images/logo.webp");
 
 export const Header : React.FC = () => {
@@ -9,8 +10,8 @@ export const Header : React.FC = () => {
                     <img width="250" src={pizzaLogo} alt="Pizza logo"/>
                 </div>
                 <div className="header__cart">
-                    <a href="" className="button button--cart">
-                        <span>520 ₽</span>
+                    <a href="/cart" className="button button--cart">
+                        <span>15 {currency}</span>
                         <div className="button__delimiter"></div>
                         <svg
                             width="18"

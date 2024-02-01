@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {PizzaBlocks} from "../../../assets/types";
 import {currency} from "../../../assets/constans";
 
@@ -8,6 +8,9 @@ export const PizzaBlock: React.FC<PizzaBlocks> = ({title, price, sizes, imageUrl
     const [activeSize, setActiveSize] = useState<number>(0);
     const [activeSizeSelector, setActiveSizeSelector] = useState<number>(0);
     const selectorChoice = ["thin", "traditional"];
+
+
+
     return (
         <div className="pizza-block">
             <img
@@ -50,7 +53,7 @@ export const PizzaBlock: React.FC<PizzaBlocks> = ({title, price, sizes, imageUrl
                             fill="white"
                         />
                     </svg>
-                    <span>Добавить</span>
+                    <span>Added</span>
                     <i>{pizzaCount}</i>
                 </button>
             </div>
