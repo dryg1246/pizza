@@ -1,50 +1,27 @@
 
 import './scss/app.scss';
 import {Header} from "./components/header/Header";
-import {Categories} from "./components/main/Categories";
-import {Sort} from "./components/main/Sort";
-import {PizzaBlock} from "./components/main/pizza-block/PizzaBlock";
-import {PizzaBlocks} from "./assets/types";
-import React, {useEffect, useState} from "react";
-import axios from "axios";
+import {Home} from "./pages/Home";
+import {Route, Routes} from "react-router-dom";
+import {NotFound} from "./pages/NotFound";
+import Cart from "./pages/Cart";
 
 
-function App()  {
-    const [items, setItems] = useState([]);
-    useEffect(() => {
-        const fetchPizzas = async () => {
-            try {
-                const response = await axios.get("https://65bb73b852189914b5bc2ea1.mockapi.io/pizzas/pizas");
-                setItems(response.data);
-                console.log(response.data);
-            } catch (error) {
-                console.error("Error fetching pizzas:", error);
-            }
-        };
-
-        fetchPizzas();
-    }, []);
-  return (
-      <div className="wrapper">
-         <Header />
-        <div className="content">
-          <div className="container">
-            <div className="content__top">
-              <Categories />
-              <Sort />
+ const App = () => {
+    return (
+        <div className="wrapper">
+            <Header/>
+            <div className="content">
+                <div className="container">
+                    <Routes>
+                        <Route path="/" element={<Home/>}/>
+                        <Route path="*" element={<NotFound/>}/>
+                        <Route path="/cart" element={<Cart />}/>
+                    </Routes>
+                </div>
             </div>
-            <div className="content__items">
-                {items.map((pizza: PizzaBlocks, i: number) => (
-                    <PizzaBlock
-                        key={i}
-                        {...pizza}
-                    />
-                ))}
-            </div>
-          </div>
         </div>
-      </div>
-  );
-}
+    );
+};
 
-export default App;
+ export default App;
