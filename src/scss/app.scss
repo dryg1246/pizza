@@ -4,7 +4,7 @@
 @import 'components/all';
 
 body {
-  background-color: $background;
+  background-color: $red-button;
   @media (max-width: 320px) {
     background-color: #fff;
   }
@@ -14,7 +14,7 @@ body {
   width: calc(100vw - 100px);
   height: 100%;
   background-color: #fff;
-  margin: 50px auto;
+  margin: 20px auto;
   border-radius: 10px;
   max-width: 100%;
   @media (max-width: 645px) {
@@ -113,7 +113,7 @@ body {
   width: $container-width;
   margin: 0 auto;
 
-  &--cart {
+    &--cart {
     max-width: 820px;
     margin: 90px auto;
 
@@ -319,7 +319,6 @@ body {
 
         span {
           color: darken($color: $gray-line, $amount: 20);
-          font-weight: 500;
           font-weight: 600;
         }
 
@@ -369,7 +368,7 @@ body {
       color: #777777;
     }
 
-    icon {
+    .icon {
       position: relative;
       top: 2px;
     }
@@ -388,5 +387,13 @@ body {
       font-size: 18px;
     }
   }
+}
+.pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 20px
+
 }
 

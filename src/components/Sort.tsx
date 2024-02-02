@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SortProps } from "../../assets/types";
+import { SortProps } from "../assets/types";
 
 export const Sort: React.FC<SortProps> = ({ value, onChangeSort }) => {
     const [isVisible, setIsVisible] = useState<boolean>(false);

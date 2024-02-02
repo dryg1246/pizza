@@ -1,10 +1,9 @@
 import React from "react";
-import {CategoriesProps} from "../../assets/types";
+import {CategoriesProps} from "../assets/types";
 
 
 export const Categories : React.FC<CategoriesProps> = ({value, onClickCategory}) => {
     const categories = ['All', 'Meat', 'Vegetarian', 'Grill', 'Spicy', 'Closed'];
-
 
     return (
         <div className="categories">

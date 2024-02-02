@@ -1,0 +1,42 @@
+.root {
+  position: relative;
+
+  .search__input{
+    padding: 12px 20px;
+    position: relative;
+    outline: none;
+    font-size: 18px;
+    width: 400px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,20%);
+    transition: border 0.3s;
+    &:focus{
+      border: 1px solid rgba(0,0,0,40%);
+    }
+  }
+  .search__icon{
+    position: absolute;
+    right: 20px;
+
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: rgba(0,0,0,50%);
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    transition: color 0.3s;
+
+    &:hover{
+      color: rgba(0,0,0,80%);
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  .root{
+    display: none;
+
+  }
+
+}

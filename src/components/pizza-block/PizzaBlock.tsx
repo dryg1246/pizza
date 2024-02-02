@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {PizzaBlocks} from "../../../assets/types";
-import {currency} from "../../../assets/constans";
+import {PizzaBlocks} from "../../assets/types";
+import {currency} from "../../assets/constans";
 
 
 export const PizzaBlock: React.FC<PizzaBlocks> = ({title, price, sizes, imageUrl} ) => {

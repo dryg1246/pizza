@@ -15,3 +15,11 @@ export interface SortProps {
     value: { name: string; sortProperty: string };
     onChangeSort: (sortObject: { name: string; sortProperty: string }) => void;
 }
+
+export type HeaderProps = {
+    searchValue: string;
+    onChangeSearch: (value: string) => void;
+};
+export interface HomeProps {
+    searchValue: string
+}
