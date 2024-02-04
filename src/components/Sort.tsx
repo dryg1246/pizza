@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { SortProps } from "../assets/types";
 
+
+
+
 export const Sort: React.FC<SortProps> = ({ value, onChangeSort }) => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
@@ -14,7 +17,7 @@ export const Sort: React.FC<SortProps> = ({ value, onChangeSort }) => {
         onChangeSort(selectedSort);
         setIsVisible(false);
     };
-
+console.log(value)
     return (
         <div className="sort">
             <div className="sort__label">

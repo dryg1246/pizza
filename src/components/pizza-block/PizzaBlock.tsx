@@ -25,6 +25,7 @@ export const PizzaBlock: React.FC<PizzaBlocks> = ({title, price, sizes, imageUrl
                         {selectorChoice.map((type, i) => {
                             return (
                                 <li
+                                    key={i}
                                     className={activeSizeSelector === i ? "active" : ""}
                                     onClick={() => setActiveSizeSelector(i)}
                                 >
@@ -35,7 +36,9 @@ export const PizzaBlock: React.FC<PizzaBlocks> = ({title, price, sizes, imageUrl
                     </ul>
                     <ul>
                         {sizes.map((size, i) => {
-                            return <li className={activeSize === i ? "active" : ""} onClick={() => setActiveSize(i)}
+                            return <li
+
+                                className={activeSize === i ? "active" : ""} onClick={() => setActiveSize(i)}
                                        key={"active"}>{size} cm</li>;
                         })}
                     </ul>

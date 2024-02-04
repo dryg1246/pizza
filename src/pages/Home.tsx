@@ -1,20 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
-import { Sort } from "../components/Sort";
-import { HomeProps, PizzaBlocks } from "../assets/types";
-import { PizzaBlock } from "../components/pizza-block/PizzaBlock";
+import {Sort} from "../components/Sort";
+import {HomeProps, PizzaBlocks} from "../assets/types";
+import {PizzaBlock} from "../components/pizza-block/PizzaBlock";
 import Categories from "../components/Categories";
-import { Pagination } from "antd";
+import {Pagination} from "antd";
+import {useSelector, useDispatch} from "react-redux";
+import  {setCategory, setSort} from "../redux/slices/filterSlice";
 
-export const Home: React.FC<HomeProps> = ({ searchValue }) => {
+export const Home: React.FC<HomeProps> = ({searchValue}) => {
     const [items, setItems] = useState<any[]>([]);
-    const [category, setCategory] = useState<number>(0);
     const [pageCount, setPageCount] = useState<number>(1);
-    const [sortBy, setSortBy] = useState<any>({
-        name: "popular",
-        sortProperty: "rating",
-    });
     const perPageSize = 8;
+
+    const category : any = useSelector<any>(state => state.filter.categoryId)
+    const sortBy: any = useSelector<any>(state => state.filter.sort);
+    const dispatch = useDispatch();
+
+    const onClickCategory = (i: number) => {
+        dispatch(setCategory(i))
+    }
+    const onClickSorting = (i : any) => {
+        dispatch(setSort(i))
+    }
     useEffect(() => {
         const fetchPizzas = async () => {
             try {
@@ -46,23 +54,23 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
     return (
         <>
             <div className="content__top">
-                <Categories value={category} onClickCategory={(a) => setCategory(a)} />
-                <Sort value={sortBy} onChangeSort={(i) => setSortBy(i)} />
+                <Categories value={category} onClickCategory={onClickCategory}/>
+                <Sort value={sortBy} onChangeSort={onClickSorting}/>
             </div>
             <div className="content__items">
                 {items.filter((item: any) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((pizza: PizzaBlocks, i: number) => (
                     <div key={i} className="content__item">
-                        <PizzaBlock {...pizza} />
+                        <PizzaBlock key={i}  {...pizza} />
                     </div>
                 ))}
             </div>
             <div className="pagination">
-            <Pagination
-                current={pageCount}
-                onChange={(pageNumber: number) => setPageCount(pageNumber)}
-                defaultCurrent={1}
-                total={20} // Set the total based on the actual number of items
-            />
+                <Pagination
+                    current={pageCount}
+                    onChange={(pageNumber: number) => setPageCount(pageNumber)}
+                    defaultCurrent={1}
+                    total={20} // Set the total based on the actual number of items
+                />
             </div>
         </>
     );

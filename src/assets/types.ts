@@ -7,13 +7,13 @@ export interface PizzaBlocks {
 }
 
 export interface CategoriesProps {
-    value: number
-    onClickCategory: (index: number) => void
+    value: number;
+    onClickCategory: (index: number) => any
 }
 
 export interface SortProps {
     value: { name: string; sortProperty: string };
-    onChangeSort: (sortObject: { name: string; sortProperty: string }) => void;
+    onChangeSort: (obj: { name: string; sortProperty: string }) => void;
 }
 
 export type HeaderProps = {
