@@ -4,14 +4,16 @@ import {Home} from "./pages/Home";
 import {Route, Routes} from "react-router-dom";
 import {NotFound} from "./pages/NotFound";
 import Cart from "./pages/Cart";
-import {useState} from "react";
+import React, {useState} from "react";
 
+export const SearchContext = React.createContext({searchValue: '', setSearchValue: (value: string) => {}});
 
 const App = () => {
     const [searchValue, setSearchValue] = useState<string>('');
     return (
         <div className="wrapper">
-            <Header searchValue={searchValue} onChangeSearch={(value) => setSearchValue(value)}/>
+            <SearchContext.Provider value={{searchValue, setSearchValue}}>
+            <Header />
             <div className="content">
                 <div className="container">
                     <Routes>
@@ -21,6 +23,7 @@ const App = () => {
                     </Routes>
                 </div>
             </div>
+            </SearchContext.Provider>
         </div>
     );
 };

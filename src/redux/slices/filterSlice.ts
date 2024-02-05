@@ -1,7 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 interface FilterSliceState {
     categoryId: number;
+    pageCount: number;
     sort: {
         name: string;
         sortProperty: string;
@@ -10,6 +11,7 @@ interface FilterSliceState {
 
 const initialState: FilterSliceState = {
     categoryId: 0,
+    pageCount: 1,
     sort: {
         name: 'popular',
         sortProperty: 'rating',
@@ -21,15 +23,23 @@ const filterSlice = createSlice({
     initialState,
     reducers: {
         setCategory: (state, action) => {
-            console.log("ddsd" + action.payload);
             state.categoryId = action.payload;
         },
         setSort: (state, action: PayloadAction<{ name: string; sortProperty: string }>) => {
             state.sort = action.payload;
         },
+        setPageCount: (state, action) => {
+            state.pageCount = action.payload;
+        },
+
+        setFilters: (state, action) => {
+            state.categoryId = Number(action.payload.categoryId);
+            state.sort = action.payload.sort
+            state.pageCount = Number(action.payload.pageCount);
+        }
     },
 });
 
-export const { setCategory, setSort } = filterSlice.actions;
+export const {setCategory, setSort, setPageCount, setFilters} = filterSlice.actions;
 
 export default filterSlice.reducer;

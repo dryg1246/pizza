@@ -2,11 +2,10 @@ import React from "react";
 import {currency} from "../assets/constans";
 import {Link} from "react-router-dom";
 import { Search} from "./search";
-import {HeaderProps} from "../assets/types";
 let pizzaLogo = require("../assets/images/logo.webp");
 
 
-export const Header : React.FC<HeaderProps> = ({searchValue, onChangeSearch }) => {
+export const Header = () => {
     return (
         <div className="header">
             <div className="container">
@@ -16,7 +15,7 @@ export const Header : React.FC<HeaderProps> = ({searchValue, onChangeSearch }) =
                     </Link>
                 </div>
                 <div className="header__cart">
-                    <Search searchValue={searchValue} onChangeSearch={onChangeSearch}/>
+                    <Search/>
                     <Link to="/cart" className="button button--cart">
                         <span>15 {currency}</span>
                         <div className="button__delimiter"></div>
