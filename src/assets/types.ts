@@ -4,6 +4,10 @@ export interface PizzaBlocks {
     sizes: number[];
     imageUrl: string;
     rating: number;
+    id: number
+    type: string
+    size: string
+    count: number
 }
 
 export interface CategoriesProps {

@@ -1,14 +1,32 @@
 import React, {useState} from "react";
 import {PizzaBlocks} from "../../assets/types";
 import {currency} from "../../assets/constans";
+import {useDispatch, useSelector} from "react-redux";
+import  {addItem} from "../../redux/slices/cartSlice";
 
 
-export const PizzaBlock: React.FC<PizzaBlocks> = ({title, price, sizes, imageUrl} ) => {
-    const [pizzaCount, setPizzaCount] = useState<number>(0);
+export const PizzaBlock: React.FC<PizzaBlocks> = ({id, title, price, sizes, imageUrl} ) => {
     const [activeSize, setActiveSize] = useState<number>(0);
+    const addItemCount = useSelector<any, { count: number }>((state) =>
+      state.cart.items.find((obj: any) => obj.id === id));
     const [activeSizeSelector, setActiveSizeSelector] = useState<number>(0);
     const selectorChoice = ["thin", "traditional"];
+    const dispatch = useDispatch();
+    const {items}: any = useSelector<any>((state) => state.cart)
 
+    const addCount = addItemCount ? addItemCount.count : 0;
+    const onClickAdd = () => {
+        const item = {
+            id,
+            title,
+            price,
+            imageUrl,
+            type: selectorChoice[activeSizeSelector],
+            size: sizes[activeSize],
+        }
+
+        dispatch(addItem(item))
+    }
 
 
     return (
@@ -45,7 +63,7 @@ export const PizzaBlock: React.FC<PizzaBlocks> = ({title, price, sizes, imageUrl
                 </div>
                 <div className="pizza-block__bottom">
                     <div className="pizza-block__price">{price}{currency}</div>
-                    <button onClick={() => setPizzaCount(pizzaCount + 1)}
+                    <button onClick={onClickAdd}
                             className="button button--outline button--add">
                         <svg
                             width="12"
@@ -60,7 +78,7 @@ export const PizzaBlock: React.FC<PizzaBlocks> = ({title, price, sizes, imageUrl
                             />
                         </svg>
                         <span>Added</span>
-                        <i>{pizzaCount}</i>
+                        {addCount > 0 && <i>{addCount}</i>}
                     </button>
                 </div>
             </div>

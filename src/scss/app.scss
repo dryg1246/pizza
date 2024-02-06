@@ -241,6 +241,7 @@ body {
     &-price {
       display: flex;
       align-items: center;
+      gap: 10px;
       justify-content: center;
       width: 33%;
 
@@ -382,7 +383,7 @@ body {
     .button--black {
       padding: 12px 0 14px;
       width: 230px;
-      margin: 0 auto;
+      margin: 0 auto 25px ;
       font-weight: 600;
       font-size: 18px;
     }

@@ -22,10 +22,13 @@ export const sortPopup = [
          const handleOutsideClick = (event: MouseEvent) => {
              if (sortRef.current && !event.composedPath().includes(sortRef.current)){
                  setIsVisible(false);
+                 console.log('ddd')
              }
          }
 
          document.body.addEventListener ('click', handleOutsideClick);
+
+         return () => document.body.removeEventListener ('click', handleOutsideClick);
      }, []);
     return (
         <div ref={sortRef}  className="sort">

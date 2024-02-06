@@ -104,7 +104,7 @@ export const Home: React.FC<HomeProps> = ({searchValue}) => {
             <div className="content__items">
                 {items.filter((item: any) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((pizza: PizzaBlocks, i: number) => (
                     <div key={i} className="content__item">
-                        <PizzaBlock key={i}  {...pizza} />
+                        <PizzaBlock key={i}   {...pizza} />
                     </div>
                 ))}
             </div>

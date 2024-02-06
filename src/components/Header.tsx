@@ -2,10 +2,14 @@ import React from "react";
 import {currency} from "../assets/constans";
 import {Link} from "react-router-dom";
 import { Search} from "./search";
+import {useSelector} from "react-redux";
+
 let pizzaLogo = require("../assets/images/logo.webp");
 
 
 export const Header = () => {
+    const {totalPrice, items} : any = useSelector((state: any) => state.cart);
+    const totalCount: number = items.reduce((sum: any, obj: any) => obj.count + sum, 0)
     return (
         <div className="header">
             <div className="container">
@@ -17,7 +21,7 @@ export const Header = () => {
                 <div className="header__cart">
                     <Search/>
                     <Link to="/cart" className="button button--cart">
-                        <span>15 {currency}</span>
+                        <span>{totalPrice} {currency}</span>
                         <div className="button__delimiter"></div>
                         <svg
                             width="18"
@@ -48,7 +52,7 @@ export const Header = () => {
                                 strokeLinejoin="round"
                             />
                         </svg>
-                        <span>3</span>
+                        <span>{totalCount}</span>
                     </Link>
                 </div>
             </div>
