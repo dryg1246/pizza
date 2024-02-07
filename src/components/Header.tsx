@@ -3,12 +3,14 @@ import {currency} from "../assets/constans";
 import {Link} from "react-router-dom";
 import { Search} from "./search";
 import {useSelector} from "react-redux";
+import {selectCart} from "../redux/selectors";
+
 
 let pizzaLogo = require("../assets/images/logo.webp");
 
 
 export const Header = () => {
-    const {totalPrice, items} : any = useSelector((state: any) => state.cart);
+    const {totalPrice, items} : any = useSelector(selectCart);
     const totalCount: number = items.reduce((sum: any, obj: any) => obj.count + sum, 0)
     return (
         <div className="header">

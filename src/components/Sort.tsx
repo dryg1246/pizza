@@ -1,6 +1,8 @@
 import React, {useEffect, useRef, useState} from "react";
 import { SortProps } from "../assets/types";
 
+
+
 export const sortPopup = [
     { name: "popular", sortProperty: "rating" },
     { name: "price", sortProperty: "price" },
@@ -45,6 +47,7 @@ export const sortPopup = [
                         {sortPopup.map((obj, i) => (
                             <li
                                 key={i}
+
                                 className={value.sortProperty === obj.sortProperty ? "active" : ""}
                                 onClick={() => handleSortClick(obj)}
                             >

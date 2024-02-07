@@ -1,11 +1,9 @@
 import React from "react";
 import {PizzaBlocks} from "../assets/types";
 import {currency} from "../assets/constans";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {addItem, minusItem, removeItem} from "../redux/slices/cartSlice";
-import {useNavigate} from "react-router-dom";
-
-export const CartItem: React.FC<PizzaBlocks> = ({id, title, price, count, type, size, imageUrl, }) => {
+export const CartItem: React.FC<PizzaBlocks> = ({id, title, price, count, type, size, }) => {
     const dispatch = useDispatch()
 
     const onClickPlus = () => {

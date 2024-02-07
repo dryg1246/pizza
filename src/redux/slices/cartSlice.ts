@@ -1,6 +1,4 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-
-import produce from 'immer';
+import {createSlice} from "@reduxjs/toolkit";
 interface CartItem {
     id: string;
     type: string;
@@ -63,6 +61,7 @@ const cartSlice = createSlice({
         }
     },
 });
+
 
 export const {clearItem, addItem, removeItem, minusItem} = cartSlice.actions;
 

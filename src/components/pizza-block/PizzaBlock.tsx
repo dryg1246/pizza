@@ -3,16 +3,16 @@ import {PizzaBlocks} from "../../assets/types";
 import {currency} from "../../assets/constans";
 import {useDispatch, useSelector} from "react-redux";
 import  {addItem} from "../../redux/slices/cartSlice";
+import {selectorCartItemById} from "../../redux/selectors";
 
 
 export const PizzaBlock: React.FC<PizzaBlocks> = ({id, title, price, sizes, imageUrl} ) => {
     const [activeSize, setActiveSize] = useState<number>(0);
-    const addItemCount = useSelector<any, { count: number }>((state) =>
-      state.cart.items.find((obj: any) => obj.id === id));
+    const addItemCount = useSelector<any, { count: number }>(selectorCartItemById(id));
     const [activeSizeSelector, setActiveSizeSelector] = useState<number>(0);
     const selectorChoice = ["thin", "traditional"];
     const dispatch = useDispatch();
-    const {items}: any = useSelector<any>((state) => state.cart)
+
 
     const addCount = addItemCount ? addItemCount.count : 0;
     const onClickAdd = () => {
