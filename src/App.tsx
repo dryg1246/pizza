@@ -7,7 +7,7 @@ import React, {useState} from "react";
 import {PizzaInfoPages} from "./pages/PizzaInfoPages";
 import {MainLayout} from "./layouts/MainLayout";
 
-export const SearchContext = React.createContext({searchValue: '', setSearchValue: () => {}});
+export const SearchContext = React.createContext({searchValue: '', setSearchValue: (value: string) => {}});
 
 const App = () => {
     const [searchValue, setSearchValue] = useState<string>('');
