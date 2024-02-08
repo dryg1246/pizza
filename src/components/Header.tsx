@@ -1,17 +1,24 @@
 import React from "react";
 import {currency} from "../assets/constans";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import { Search} from "./search";
 import {useSelector} from "react-redux";
 import {selectCart} from "../redux/selectors";
+import {CartSliceState} from "../assets/types";
 
 
 let pizzaLogo = require("../assets/images/logo.webp");
 
 
 export const Header = () => {
-    const {totalPrice, items} : any = useSelector(selectCart);
+
+    const {totalPrice, items} : CartSliceState = useSelector(selectCart);
     const totalCount: number = items.reduce((sum: any, obj: any) => obj.count + sum, 0)
+
+    const {pathname} = useLocation()
+
+    console.log(pathname)
+
     return (
         <div className="header">
             <div className="container">
@@ -20,7 +27,7 @@ export const Header = () => {
                         <img className="header__pizza" src={pizzaLogo} alt="Pizza logo"/>
                     </Link>
                 </div>
-                <div className="header__cart">
+                {pathname !== "/cart" && <div className="header__cart">
                     <Search/>
                     <Link to="/cart" className="button button--cart">
                         <span>{totalPrice} {currency}</span>
@@ -56,7 +63,7 @@ export const Header = () => {
                         </svg>
                         <span>{totalCount}</span>
                     </Link>
-                </div>
+                </div>}
             </div>
         </div>
     );

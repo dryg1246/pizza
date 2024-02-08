@@ -11,7 +11,7 @@ export interface PizzaBlocks {
 }
 export interface FetchPizzasParams {
     categoryId: number;
-    sortBy: { sortProperty: string }; // Assuming sortProperty is a string
+    sortBy: { sortProperty: string };
     searchValue: string;
     pageCount: number;
     perPageSize: number;
@@ -50,4 +50,15 @@ export interface FilterSliceState {
         name: string;
         sortProperty: string;
     };
+}
+interface CartItem {
+    id: string;
+    type: string;
+    size: string;
+    count: number;
+    price: number;
+}
+export interface CartSliceState {
+    items: CartItem[];
+    totalPrice: number;
 }

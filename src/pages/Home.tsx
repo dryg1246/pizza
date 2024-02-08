@@ -9,10 +9,11 @@ import { Pagination } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategory, setSort, setPageCount } from "../redux/slices/filterSlice";
 // import {fetchPizzasData} from "../redux/slices/pizzasSlice";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {setPizzas} from "../redux/slices/pizzasSlice";
 import {selectFilter, selectItems} from "../redux/selectors";
 import {FilterSliceState} from "../assets/types";
+
 
 
 export const Home: React.FC<HomeProps> = ({ searchValue }) => {

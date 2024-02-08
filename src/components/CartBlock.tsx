@@ -5,12 +5,14 @@ import {currency} from "../assets/constans";
 import {clearItem} from "../redux/slices/cartSlice";
 import {CartEmpty} from "./CartEmpty";
 import {selectCart} from "../redux/selectors";
+import {Link} from "react-router-dom";
+import {CartSliceState} from "../assets/types";
 
 
 
 export const CartBlock = () => {
     const dispatch = useDispatch()
-    const {items, totalPrice}: any = useSelector<any>(selectCart)
+    const {items, totalPrice}: any = useSelector<CartSliceState>(selectCart)
     const totalCount: number = items.reduce((sum: any, obj: any) => obj.count + sum, 0)
 
 
@@ -76,7 +78,8 @@ export const CartBlock = () => {
                 </span>
                             </div>
                             <div className="cart__bottom-buttons">
-                                <a href="/" className="button button--outline button--add go-back-btn">
+                                <Link to="/">
+                                <div className="button button--outline button--add go-back-btn">
                                     <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5"
@@ -84,7 +87,8 @@ export const CartBlock = () => {
                                     </svg>
 
                                     <span>Go back</span>
-                                </a>
+                                </div>
+                                </Link>
                                 <div className="button pay-btn">
                                     <span>Pay now</span>
                                 </div>

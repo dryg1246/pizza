@@ -10,7 +10,7 @@ export const Search = () => {
 
 
     const updateSearchValue: any = useCallback(
-        debounce((str) => {
+        debounce((str: string) => {
             setSearchValue(str);
         }, 1000),
         []
