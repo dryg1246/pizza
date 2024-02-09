@@ -1,14 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import axios from "axios";
 import { Sort, sortPopup } from "../components/Sort";
-import { HomeProps, PizzaBlocks } from "../assets/types";
+import {HomeProps, PizzaBlocks} from "../assets/types";
 import { PizzaBlock } from "../components/pizza-block/PizzaBlock";
 import Categories from "../components/Categories";
 import qs from "qs";
 import { Pagination } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategory, setSort, setPageCount } from "../redux/slices/filterSlice";
-// import {fetchPizzasData} from "../redux/slices/pizzasSlice";
 import {useNavigate} from "react-router-dom";
 import {setPizzas} from "../redux/slices/pizzasSlice";
 import {selectFilter, selectItems} from "../redux/selectors";
@@ -24,13 +23,13 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const {categoryId, sortBy, pageCount}: FilterSliceState = useSelector(selectFilter);
-    const {items}: any = useSelector<any>(selectItems);
+    const {items}: any | undefined = useSelector(selectItems) ;
 
 
     const onClickCategory = (i: number) => {
         dispatch(setCategory(i));
     };
-    const onClickSorting = (i: any) => {
+    const onClickSorting = (i: { sortProperty: string , name: string}) => {
         dispatch(setSort(i));
     };
 
@@ -103,7 +102,7 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
             <div className="content__items">
                 {items
                     .filter((item: any) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
-                    .map((pizza: PizzaBlocks, i: number) => (
+                    .map((pizza : PizzaBlocks, i: number) => (
                         <div key={i} className="content__item">
                             <PizzaBlock key={i} {...pizza} />
                         </div>

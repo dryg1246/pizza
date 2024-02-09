@@ -13,7 +13,7 @@ let pizzaLogo = require("../assets/images/logo.webp");
 export const Header = () => {
 
     const {totalPrice, items} : CartSliceState = useSelector(selectCart);
-    const totalCount: number = items.reduce((sum: any, obj: any) => obj.count + sum, 0)
+    const totalCount: number = items.reduce((sum, obj) => obj.count + sum, 0)
 
     const {pathname} = useLocation()
 

@@ -6,7 +6,7 @@ export const fetchPizzasData = createAsyncThunk('pizzas/fetchPizzasData', async(
     console.log(thunkAPI)
     return response.data;
 });
-const initialState: {items: any[]} = {
+const initialState: {items: { id: string, type: string, size: string }[]} = {
     items: [],
 };
 

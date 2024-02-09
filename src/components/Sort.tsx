@@ -1,9 +1,12 @@
 import React, {useEffect, useRef, useState} from "react";
 import { SortProps } from "../assets/types";
 
+type SortItem = {
+    name: string;
+    sortProperty: string;
+}
 
-
-export const sortPopup = [
+export const sortPopup: SortItem[] = [
     { name: "popular", sortProperty: "rating" },
     { name: "price", sortProperty: "price" },
     { name: "alphabet", sortProperty: "title" },
@@ -14,7 +17,7 @@ export const sortPopup = [
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const sortRef = useRef<HTMLDivElement>(null);
 
-    const handleSortClick = (selectedSort: { name: string; sortProperty: string }) => {
+    const handleSortClick = (selectedSort: SortItem) => {
         onChangeSort(selectedSort);
         setIsVisible(false);
     };

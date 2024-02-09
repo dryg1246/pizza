@@ -12,7 +12,7 @@ import {CartSliceState} from "../assets/types";
 
 export const CartBlock = () => {
     const dispatch = useDispatch()
-    const {items, totalPrice}: any = useSelector<CartSliceState>(selectCart)
+    const { items, totalPrice }: CartSliceState = useSelector(selectCart) as CartSliceState;
     const totalCount: number = items.reduce((sum: any, obj: any) => obj.count + sum, 0)
 
 

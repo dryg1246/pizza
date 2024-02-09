@@ -27,7 +27,7 @@ export interface PizzaBlocks {
 }
 export interface CategoriesProps {
     value: number;
-    onClickCategory: (index: number) => any
+    onClickCategory: (index: number) => void;
 }
 
 export interface SortProps {
@@ -51,7 +51,7 @@ export interface FilterSliceState {
         sortProperty: string;
     };
 }
-interface CartItem {
+export interface CartItem {
     id: string;
     type: string;
     size: string;
