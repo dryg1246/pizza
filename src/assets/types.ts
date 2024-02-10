@@ -9,6 +9,15 @@ export interface PizzaBlocks {
     size: string
     count: number
 }
+
+export interface PizzaItem {
+    id: number;
+    title: string;
+    price: number;
+    imageUrl: string;
+    size: number;
+    type: string;
+}
 export interface FetchPizzasParams {
     categoryId: number;
     sortBy: { sortProperty: string };
@@ -43,12 +52,12 @@ export interface HomeProps {
     searchValue: string
 }
 
-export interface FilterSliceState {
+export type FilterSliceState = {
     categoryId: number;
     pageCount: number;
     sortBy: {
         name: string;
-        sortProperty: string;
+        sortProperty: string
     };
 }
 export interface CartItem {
@@ -62,3 +71,13 @@ export interface CartSliceState {
     items: CartItem[];
     totalPrice: number;
 }
+export enum Status {
+    LOADING = 'loading',
+    SUCCESS = 'success',
+    ERROR = 'error',
+}
+export interface PizzaSliceState {
+    items: PizzaBlocks[];
+    status: Status;
+}
+

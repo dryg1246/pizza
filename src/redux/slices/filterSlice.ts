@@ -7,7 +7,7 @@ const initialState: FilterSliceState = {
     pageCount: 1,
     sortBy: {
         name: 'popular',
-        sortProperty: 'rating',
+        sortProperty: 'rating' || 'price' || 'title',
     },
 }
 
@@ -15,13 +15,13 @@ const filterSlice = createSlice({
     name: 'filters',
     initialState,
     reducers: {
-        setCategory: (state, action) => {
+        setCategory: (state, action: PayloadAction<number>) => {
             state.categoryId = action.payload;
         },
         setSort: (state, action: PayloadAction<{ name: string; sortProperty: string }>) => {
             state.sortBy = action.payload;
         },
-        setPageCount: (state, action) => {
+        setPageCount: (state, action: PayloadAction<number>) => {
             state.pageCount = action.payload;
         },
     },

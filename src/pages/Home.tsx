@@ -1,17 +1,18 @@
 import React, { useEffect, useRef } from "react";
-import axios from "axios";
 import { Sort, sortPopup } from "../components/Sort";
 import {HomeProps, PizzaBlocks} from "../assets/types";
 import { PizzaBlock } from "../components/pizza-block/PizzaBlock";
 import Categories from "../components/Categories";
 import qs from "qs";
 import { Pagination } from "antd";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { setCategory, setSort, setPageCount } from "../redux/slices/filterSlice";
 import {useNavigate} from "react-router-dom";
-import {setPizzas} from "../redux/slices/pizzasSlice";
+import {fetchPizzasData} from "../redux/slices/pizzasSlice";
 import {selectFilter, selectItems} from "../redux/selectors";
 import {FilterSliceState} from "../assets/types";
+import {useAppDispatch} from "../redux/hooks/useAppDispatch";
+
 
 
 
@@ -21,9 +22,9 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
     const isMounted = useRef<boolean>(false);
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const {categoryId, sortBy, pageCount}: FilterSliceState = useSelector(selectFilter);
-    const {items}: any | undefined = useSelector(selectItems) ;
+    const {items}: any = useSelector(selectItems) ;
 
 
     const onClickCategory = (i: number) => {
@@ -38,29 +39,11 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
     };
 
     useEffect(() => {
-        const fetchPizzas = async () => {
-            try {
-                // await dispatch(fetchPizzasData());
-                const response = await axios.get(
-                    `https://65bb73b852189914b5bc2ea1.mockapi.io/pizzas/pizas`,
-                    {
-                        params: {
-                            category: categoryId !== 0 ? categoryId : "",
-                            sortBy: sortBy.sortProperty,
-                            order: "asc",
-                            search: searchValue,
-                            page: pageCount,
-                            limit: perPageSize,
-                        },
-                    }
-                );
-                dispatch(setPizzas(response.data));
-            } catch (error) {
-                console.error("Error fetching pizzas:", error);
-            }
-        };
-        fetchPizzas();
-    }, [categoryId, sortBy, searchValue, pageCount, dispatch]);
+        if (isSearch.current) {
+            dispatch(fetchPizzasData({searchValue, categoryId, sortBy, pageCount, perPageSize}));
+        }
+        isSearch.current = true;
+    }, [categoryId, sortBy, pageCount, perPageSize, searchValue]);
 
     useEffect(() => {
         if (window.location.search) {

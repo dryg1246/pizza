@@ -6,6 +6,8 @@ const initialState: CartSliceState = {
     totalPrice: 0
 }
 
+
+
 const refactorFindItem = (state: CartSliceState, payload: { id: string, type: string, size: string }) => {
     return state.items.find((obj) => {
         return obj.id === payload.id && obj.type === payload.type && obj.size === payload.size;

@@ -9,7 +9,7 @@ export const Search = () => {
     const { setSearchValue } = useContext(SearchContext);
 
 
-    const updateSearchValue: any = useCallback(
+    const updateSearchValue = useCallback(
         debounce((str: string) => {
             setSearchValue(str);
         }, 1000),
