@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import { SortProps } from "../assets/types";
 
 type SortItem = {
@@ -13,14 +13,14 @@ export const sortPopup: SortItem[] = [
 ];
 
 
- export const Sort: React.FC<SortProps> = ({ value, onChangeSort }) => {
+ export const Sort: React.FC<SortProps> = React.memo(({ value, onChangeSort }) => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const sortRef = useRef<HTMLDivElement>(null);
 
-    const handleSortClick = (selectedSort: SortItem) => {
+    const handleSortClick = useCallback((selectedSort: SortItem) => {
         onChangeSort(selectedSort);
         setIsVisible(false);
-    };
+    }, []);
 
 
      useEffect(() => {
@@ -62,4 +62,5 @@ export const sortPopup: SortItem[] = [
             )}
         </div>
     );
-};
+});
+

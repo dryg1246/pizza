@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, {useCallback, useEffect, useRef} from "react";
 import { Sort, sortPopup } from "../components/Sort";
 import {HomeProps, PizzaBlocks} from "../assets/types";
 import { PizzaBlock } from "../components/pizza-block/PizzaBlock";
@@ -15,7 +15,6 @@ import {useAppDispatch} from "../redux/hooks/useAppDispatch";
 
 
 
-
 export const Home: React.FC<HomeProps> = ({ searchValue }) => {
     const perPageSize = 8;
     const isSearch = useRef<boolean>(false);
@@ -27,9 +26,9 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
     const {items}: any = useSelector(selectItems) ;
 
 
-    const onClickCategory = (i: number) => {
+    const onClickCategory = useCallback((i: number) => {
         dispatch(setCategory(i));
-    };
+    }, []);
     const onClickSorting = (i: { sortProperty: string , name: string}) => {
         dispatch(setSort(i));
     };

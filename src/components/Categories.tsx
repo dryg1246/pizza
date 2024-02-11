@@ -1,10 +1,11 @@
 import React from "react";
 import {CategoriesProps} from "../assets/types";
+import { useWhyDidYouUpdate } from 'ahooks';
 
 
-export const Categories : React.FC<CategoriesProps> = ({value, onClickCategory}) => {
+export const Categories: React.FC<CategoriesProps> = React.memo(({ value, onClickCategory }) => {
     const categories = ['All', 'Meat', 'Vegetarian', 'Grill', 'Spicy', 'Closed'];
-
+    useWhyDidYouUpdate('Categories', { value, onClickCategory })
     return (
         <div className="categories">
             <ul>
@@ -17,6 +18,5 @@ export const Categories : React.FC<CategoriesProps> = ({value, onClickCategory})
             </ul>
         </div>
     );
-};
-
+});
 export default Categories;
