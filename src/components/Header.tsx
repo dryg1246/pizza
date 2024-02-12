@@ -1,4 +1,3 @@
-import React from "react";
 import {currency} from "../assets/constans";
 import {Link, useLocation} from "react-router-dom";
 import { Search} from "./search";
