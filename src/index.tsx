@@ -11,11 +11,11 @@ import {persistStore} from "redux-persist"
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
-let persistor = persistStore(store)
+let persist = persistStore(store)
 root.render(
     <Provider store={store}>
         <BrowserRouter>
-            <PersistGate persistor={persistor} >
+            <PersistGate persistor={persist} >
                 <App/>
             </PersistGate>
         </BrowserRouter>

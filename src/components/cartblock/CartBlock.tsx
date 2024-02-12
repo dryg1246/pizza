@@ -1,13 +1,12 @@
 
 import {useDispatch, useSelector} from "react-redux";
-import {CartItem} from "./CartItem";
-import {currency} from "../assets/constans";
-import {clearItem} from "../redux/slices/cartSlice";
-import {CartEmpty} from "./CartEmpty";
-import {selectCart} from "../redux/selectors";
+import {currency} from "../../assets/constans";
+import {clearItem} from "../../redux/slices/cartSlice";
+import {selectCart} from "../../redux/selectors";
 import {Link} from "react-router-dom";
-import {CartSliceState} from "../assets/types";
+import {CartSliceState} from "../../assets/types";
 
+import {CartItem, CartEmpty} from "../index";
 
 
 export const CartBlock = () => {

@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
-import { SortProps } from "../assets/types";
+import { SortProps } from "../../assets/types";
 
 type SortItem = {
     name: string;

@@ -1,5 +1,5 @@
 import React from "react";
-import {CategoriesProps} from "../assets/types";
+import {CategoriesProps} from "../../assets/types";
 import { useWhyDidYouUpdate } from 'ahooks';
 
 
@@ -19,4 +19,3 @@ export const Categories: React.FC<CategoriesProps> = React.memo(({ value, onClic
         </div>
     );
 });
-export default Categories;

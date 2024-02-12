@@ -1,5 +1,5 @@
 import React from "react";
-let emptyCart = require("../assets/images/empty-cart.png");
+let emptyCart = require("../../assets/images/empty-cart.png");
 
 export const CartEmpty = () => {
     return (
@@ -13,7 +13,7 @@ export const CartEmpty = () => {
                             To order pizza, go to the main page.
                         </p>
                         <img src={emptyCart} alt="Empty cart"/>
-                        <a href="/" className="button button--black">
+                        <a href="/public" className="button button--black">
                             <span>Go back</span>
                         </a>
                     </div>

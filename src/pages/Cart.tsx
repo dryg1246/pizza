@@ -1,4 +1,4 @@
-import {CartBlock} from "../components/CartBlock";
+import {CartBlock} from "../components/";
 
 const Cart = () => {
     return (

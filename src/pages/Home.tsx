@@ -1,10 +1,4 @@
 import React, {useCallback, useEffect, useRef} from "react";
-import { Sort, sortPopup } from "../components/Sort";
-import {HomeProps, PizzaBlocks} from "../assets/types";
-import { PizzaBlock } from "../components/pizza-block/PizzaBlock";
-import Categories from "../components/Categories";
-import qs from "qs";
-import { Pagination } from "antd";
 import { useSelector } from "react-redux";
 import { setCategory, setSort, setPageCount } from "../redux/slices/filterSlice";
 import {useNavigate} from "react-router-dom";
@@ -12,6 +6,12 @@ import {fetchPizzasData} from "../redux/slices/pizzasSlice";
 import {selectFilter, selectItems} from "../redux/selectors";
 import {FilterSliceState} from "../assets/types";
 import {useAppDispatch} from "../redux/hooks/useAppDispatch";
+
+import {HomeProps, PizzaBlocks} from "../assets/types";
+import qs from "qs";
+import { Pagination } from "antd";
+
+import {Categories, PizzaBlock, Sort, sortPopup} from "../components";
 
 
 
@@ -95,7 +95,7 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
                     current={pageCount as number ?? 1}
                     onChange={onChangePage}
                     defaultCurrent={1}
-                    total={20} // Dynamically calculate total based on items length
+                    total={20}
                 />
             </div>
         </>

@@ -1,8 +1,8 @@
 import React from "react";
-import {PizzaBlocks} from "../assets/types";
-import {currency} from "../assets/constans";
+import {PizzaBlocks} from "../../assets/types";
+import {currency} from "../../assets/constans";
 import {useDispatch} from "react-redux";
-import {addItem, minusItem, removeItem} from "../redux/slices/cartSlice";
+import {addItem, minusItem, removeItem} from "../../redux/slices/cartSlice";
 export const CartItem: React.FC<PizzaBlocks> = ({id, title, price, count, type, size, }) => {
     const dispatch = useDispatch()
 

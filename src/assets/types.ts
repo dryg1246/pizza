@@ -44,10 +44,10 @@ export interface SortProps {
     onChangeSort: (obj: { name: string; sortProperty: string }) => void;
 }
 
-export type HeaderProps = {
-    searchValue: string;
-    onChangeSearch: (value: string) => void;
-};
+//export type HeaderProps = {
+//    searchValue: string;
+//    onChangeSearch: (value: string) => void;
+//};
 export interface HomeProps {
     searchValue: string
 }

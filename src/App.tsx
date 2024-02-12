@@ -1,11 +1,19 @@
 import './scss/app.scss';
-import {Home} from "./pages/Home";
+import Loadable from 'react-loadable';
 import {Route, Routes} from "react-router-dom";
-import {NotFound} from "./pages/NotFound";
-import Cart from "./pages/Cart";
-import React, {useState} from "react";
-import {PizzaInfoPages} from "./pages/PizzaInfoPages";
+import React, {Suspense, useState} from "react";
 import {MainLayout} from "./layouts/MainLayout";
+import Loading from "@ant-design/icons/lib/icons/LoadingOutlined";
+
+import {Home} from "./pages/Home";
+
+const PizzaInfoPages = React.lazy( () => import(/* webpackChunkName: "PizzaInfo" */ './pages/PizzaInfoPages'));
+const NotFound = React.lazy(() => import(/* webpackChunkName: "NotFound" */'./pages/NotFound'));
+
+const Cart = Loadable({
+    loader: () => import(/* webpackChunkName: "Cart" */ './pages/Cart'),
+    loading: () => <Loading />,
+});
 
 export const SearchContext = React.createContext({searchValue: '', setSearchValue: (value: string) => {}});
 
@@ -14,6 +22,7 @@ const App = () => {
 
     return (
             <SearchContext.Provider value={{searchValue, setSearchValue}}>
+                <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
                     <Route path="/" element={<MainLayout/>}>
                         <Route path="" element={<Home searchValue={searchValue}/>}/>
@@ -22,6 +31,7 @@ const App = () => {
                         <Route path="pizza/:id" element={<PizzaInfoPages/>}/>
                     </Route>
                 </Routes>
+                </Suspense>
             </SearchContext.Provider>
     );
 };
