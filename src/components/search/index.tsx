@@ -16,7 +16,7 @@ export const Search = () => {
         []
     );
 
-    const OnClickSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onClickSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value);
         updateSearchValue(event.target.value);
     };
@@ -26,7 +26,7 @@ export const Search = () => {
             <input
                 value={value}
                 placeholder={"Search..."}
-                onChange={OnClickSearch}
+                onChange={onClickSearch}
                 className="search__input"
             />
             <SearchOutlined className="search__icon" />

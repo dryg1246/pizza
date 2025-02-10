@@ -4,10 +4,10 @@ import { setCategory, setSort, setPageCount } from "../redux/slices/filterSlice"
 import {useNavigate} from "react-router-dom";
 import {fetchPizzasData} from "../redux/slices/pizzasSlice";
 import {selectFilter, selectItems} from "../redux/selectors";
-import {FilterSliceState} from "../assets/types";
+import {FilterSliceState, PizzaItem} from "../assets/types";
 import {useAppDispatch} from "../redux/hooks/useAppDispatch";
 
-import {HomeProps, PizzaBlocks} from "../assets/types";
+import {HomeProps} from "../assets/types";
 import qs from "qs";
 import { Pagination } from "antd";
 
@@ -23,7 +23,7 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const {categoryId, sortBy, pageCount}: FilterSliceState = useSelector(selectFilter);
-    const {items}: any = useSelector(selectItems) ;
+    const {items} : any = useSelector(selectItems) ;
 
 
     const onClickCategory = useCallback((i: number) => {
@@ -82,12 +82,8 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
                 <Sort value={sortBy} onChangeSort={onClickSorting} />
             </div>
             <div className="content__items">
-                {items
-                    .filter((item: any) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
-                    .map((pizza : PizzaBlocks, i: number) => (
-                        <div key={i} className="content__item">
-                            <PizzaBlock key={i} {...pizza} />
-                        </div>
+                    {items.map((item: PizzaItem, index: number) => (
+                        <PizzaBlock id={item.id}  />
                     ))}
             </div>
             <div className="pagination">

@@ -1,10 +1,10 @@
 import React, {useEffect} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-import {PizzaBlocks} from "../assets/types";
+import {PizzaItem} from "../assets/types";
 
 export const PizzaInformation: React.FC = () => {
-	const [pizza, setPizza] = React.useState<PizzaBlocks>();
+	const [pizza, setPizza] = React.useState<PizzaItem>();
 
 
 	const {id} = useParams()
@@ -31,8 +31,8 @@ export const PizzaInformation: React.FC = () => {
 			<div className="wrapper">
 				<div className="container">
 					<div className="pizza">
-						<img src={pizza.imageUrl} alt={pizza.title} />
-						<h1>{pizza.title}</h1>
+						{/* <img src={pizza.imageUrl} alt={pizza.title} /> */}
+						<h1>{pizza.name}</h1>
 						<h4>{pizza.price} </h4>
 					</div>
 				</div>

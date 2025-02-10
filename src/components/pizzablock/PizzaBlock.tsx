@@ -1,22 +1,20 @@
-import React, {useState} from "react";
-import { PizzaBlocks, PizzaItem} from "../../assets/types";
+import React, {useEffect, useState} from "react";
+import {PizzaItem} from "../../assets/types";
 import {currency} from "../../assets/constans";
-import {useDispatch, useSelector} from "react-redux";
-import  {addItem} from "../../redux/slices/cartSlice";
-import {selectorCartItemById} from "../../redux/selectors";
 import {Link} from "react-router-dom";
+import PizzaService from "../../services/pizza.service";
 
 
-export const PizzaBlock: React.FC<PizzaBlocks> = ({id, title, price, sizes, imageUrl} ) => {
-    const [activeSize, setActiveSize] = useState<number>(0);
-    const addItemCount = useSelector(selectorCartItemById(id));
+interface PizzaBlockProps {
+    id: number;
+}
+
+export const PizzaBlock = ({ id }: PizzaBlockProps) => {
     const [activeSizeSelector, setActiveSizeSelector] = useState<number>(0);
     const selectorChoice = ["thin", "traditional"];
-    const dispatch = useDispatch();
+    const [pizza, setPizza] = useState<PizzaItem | null>(null);
 
-
-    const addCount = addItemCount ? addItemCount.count : 0;
-    const onClickAdd = () => {
+ /*    const onClickAdd = () => {
         const item: PizzaItem = {
             id,
             title,
@@ -25,22 +23,30 @@ export const PizzaBlock: React.FC<PizzaBlocks> = ({id, title, price, sizes, imag
             type: selectorChoice[activeSizeSelector],
             size: sizes[activeSize],
         }
-
         dispatch(addItem(item))
-    }
+    } */
 
+    useEffect(() => {
+        PizzaService.getPizzaById(id).then(res => {
+            console.log("Image response:", res.data);
+            if (res.data) {
+                setPizza(res.data);
+            }
+        }).catch(err => {
+            console.error('Error fetching pizza:', err);
+        });
+    }, [id])
 
+    console.log("Image: " + pizza?.name)
     return (
         <div className="pizza-block">
+
             <div className="wrapper">
                 <Link to={`/pizza/${id}`}>
-                <img
-                    className="pizza-block__image"
-                    src={imageUrl}
-                    alt="Pizza"
-                />
+                    <img className="pizza-block__image" src={`/images/${pizza?.image}`} alt="Pizza" onError={(e) => console.error('Image error:', e)} />
                 </Link>
-                <h4 className="pizza-block__title">{title}</h4>
+                <h4 className="pizza-block__title">{pizza?.name}</h4>
+                <p>{pizza?.size}</p>
                 <div className="pizza-block__selector">
                     <ul>
                         {selectorChoice.map((type, i) => {
@@ -56,17 +62,17 @@ export const PizzaBlock: React.FC<PizzaBlocks> = ({id, title, price, sizes, imag
                         })}
                     </ul>
                     <ul>
-                        {sizes.map((size, i) => {
-                            return <li
+                        {/* {sizes.map((size, i) => { */}
+                        {/*     return <li */}
 
-                                className={activeSize === i ? "active" : ""} onClick={() => setActiveSize(i)}
-                                       key={"active"}>{size} cm</li>;
-                        })}
+                        {/*         className={activeSize === i ? "active" : ""} onClick={() => setActiveSize(i)} */}
+                        {/*                key={"active"}>{size} cm</li>; */}
+                        {/* })} */}
                     </ul>
                 </div>
                 <div className="pizza-block__bottom">
-                    <div className="pizza-block__price">{price}{currency}</div>
-                    <button onClick={onClickAdd}
+                    <div className="pizza-block__price">{pizza?.price}{currency}</div>
+                    <button
                             className="button button--outline button--add">
                         <svg
                             width="12"
@@ -81,7 +87,6 @@ export const PizzaBlock: React.FC<PizzaBlocks> = ({id, title, price, sizes, imag
                             />
                         </svg>
                         <span>Added</span>
-                        {addCount > 0 && <i>{addCount}</i>}
                     </button>
                 </div>
             </div>

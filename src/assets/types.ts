@@ -1,23 +1,13 @@
-export interface PizzaBlocks {
-    title: string;
-    price: number;
-    sizes: number[];
-    imageUrl: string;
-    rating: number;
-    id: number
-    type: string
-    size: string
-    count: number
-}
+
 
 export interface PizzaItem {
     id: number;
-    title: string;
+    name: string;
     price: number;
-    imageUrl: string;
-    size: number;
-    type: string;
+    size: string;
+    image: null;
 }
+
 export interface FetchPizzasParams {
     categoryId: number;
     sortBy: { sortProperty: string };
@@ -27,7 +17,7 @@ export interface FetchPizzasParams {
 }
 
 // Define PizzaBlocks type
-export interface PizzaBlocks {
+export interface PizzaItem {
     // Define the structure of PizzaBlocks according to your data
     // For example:
     id: number;
@@ -77,7 +67,7 @@ export enum Status {
     ERROR = 'error',
 }
 export interface PizzaSliceState {
-    items: PizzaBlocks[];
+    items: PizzaItem[];
     status: Status;
 }
 

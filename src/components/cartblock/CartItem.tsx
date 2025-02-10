@@ -1,31 +1,30 @@
 import React from "react";
-import {PizzaBlocks} from "../../assets/types";
+import { PizzaItem} from "../../assets/types";
 import {currency} from "../../assets/constans";
 import {useDispatch} from "react-redux";
 import {addItem, minusItem, removeItem} from "../../redux/slices/cartSlice";
-export const CartItem: React.FC<PizzaBlocks> = ({id, title, price, count, type, size, }) => {
+export const CartItem: React.FC<PizzaItem> = ({id, name, price, size }) => {
     const dispatch = useDispatch()
 
     const onClickPlus = () => {
         dispatch(addItem ({
             id,
-            type,
             size,
         }))
     }
     const onClickRemove = () => {
-        dispatch(removeItem({id, type, size}))
+        dispatch(removeItem({id, size}))
     }
 
-    const onClickMinus = () => {
-        if(count > 1){
-            dispatch(minusItem({id, type, size}))
-        }
-       // else if (count === 1 && items.length > 0) {
-       //     dispatch(removeItem({id, type, size}))
-       //     navigate('/')
-       // }
-    }
+    //const onClickMinus = () => {
+    //    if(count > 1){
+    //        dispatch(minusItem({id, size}))
+    //    }
+    //   // else if (count === 1 && items.length > 0) {
+    //   //     dispatch(removeItem({id, type, size}))
+    //   //     navigate('/')
+    //   // }
+    //}
     return (
         <div className="cart__item">
             <div className="cart__item-img">
@@ -36,11 +35,11 @@ export const CartItem: React.FC<PizzaBlocks> = ({id, title, price, count, type, 
                 />
             </div>
             <div className="cart__item-info">
-                <h3>{title}</h3>
-                <p>{type}, {size}</p>
+                <h3>{name}</h3>
+                <p>{size}</p>
             </div>
             <div className="cart__item-count">
-                <button onClick={onClickMinus} className="button button--outline button--circle cart__item-count-minus">
+                <button  className="button button--outline button--circle cart__item-count-minus">
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -52,7 +51,7 @@ export const CartItem: React.FC<PizzaBlocks> = ({id, title, price, count, type, 
                     </svg>
 
                 </button>
-                <b>{count}</b>
+                {/* <b>{count}</b> */}
                 <button onClick={onClickPlus} className="button button--outline button--circle cart__item-count-plus">
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
