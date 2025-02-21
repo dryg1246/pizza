@@ -12,7 +12,7 @@ const initialState : PizzaSliceState = {
 export const fetchPizzasData = createAsyncThunk<PizzaItem[], FetchPizzasParams>('pizzas/fetchPizzasData', async(params ) => {
     const {categoryId, sortBy, searchValue, pageCount, perPageSize} = params;
 
-    const response = await  PizzaService.getOnlyPizzas(categoryId, sortBy, searchValue, pageCount);
+    const response = await  PizzaService.getOnlyPizzas(categoryId, sortBy, searchValue, pageCount, perPageSize);
     return response.data;
 });
 

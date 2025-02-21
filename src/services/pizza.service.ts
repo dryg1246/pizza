@@ -2,7 +2,7 @@ import axios from "axios";
 
 axios.defaults.baseURL = 'https://localhost:7004';
 class PizzaService {
-	getOnlyPizzas(categoryId : number, sortBy: {sortProperty: string}, searchValue: string, pageCount: number) {
+	getOnlyPizzas(categoryId : number, sortBy: {sortProperty: string}, searchValue: string, pageCount: number, perPageSize: number) {
 		return axios.get('https://localhost:7004/api/PizzaHut/GetOnlyPizzas/'
 			,
 			{
@@ -11,12 +11,14 @@ class PizzaService {
 					sortBy: sortBy.sortProperty,
 					//order: "asc",
 					search: searchValue,
-					page: pageCount,
-					//limit: perPageSize,
-					pageSize: 10
+					pageCount,
+					limit: perPageSize,
 				},
 			}
 		);
+	}
+	getTotalCountPizza() {
+		return axios.get("https://localhost:7004/api/PizzaHut/GetTotalPizzas")
 	}
 	getPizzaById(id: number) {
 		return axios.get(`https://localhost:7004/api/PizzaHut/${id}`);

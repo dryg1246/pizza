@@ -12,6 +12,7 @@ import qs from "qs";
 import { Pagination } from "antd";
 
 import {Categories, PizzaBlock, Sort, sortPopup} from "../components";
+import PizzaService from "../services/pizza.service";
 
 
 
@@ -25,6 +26,9 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
     const {categoryId, sortBy, pageCount}: FilterSliceState = useSelector(selectFilter);
     const {items} : any = useSelector(selectItems) ;
 
+    const [totalCount, setTotalCount] = useState<number>(0);
+
+    //const totalCount = items.length ? items.length : 0;
     //useEffect(() => {
     //    PizzaService.getOnlyPizzas().then(res => {
     //       if (res.data) {
@@ -45,11 +49,26 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
     };
 
     useEffect(() => {
+        console.log(pageCount)
+    }, [pageCount]);
+    useEffect(() => {
+        console.log(perPageSize)
+    }, [perPageSize]);
+
+    useEffect(() => {
         if (isSearch.current) {
             dispatch(fetchPizzasData({searchValue, categoryId, sortBy, pageCount, perPageSize}));
         }
         isSearch.current = true;
     }, [categoryId, sortBy, pageCount, perPageSize, searchValue]);
+
+    useEffect(() => {
+        PizzaService.getTotalCountPizza().then(res => {
+            if (res.data) {
+                setTotalCount(res.data);
+            }
+        })
+    }, []);
 
     useEffect(() => {
         if (window.location.search) {
@@ -102,7 +121,7 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
             </div>
             <div className="content__items">
                 {items?.map((item: PizzaItem, index: number) => (
-                        <PizzaBlock id={item.id}  />
+                        <PizzaBlock id={item.id} key={item.id} />
                     ))}
             </div>
             <div className="pagination">
@@ -110,7 +129,8 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
                     current={pageCount as number ?? 1}
                     onChange={onChangePage}
                     defaultCurrent={1}
-                    total={20}
+                    total={totalCount}
+                    pageSize={perPageSize}
                 />
             </div>
         </>
