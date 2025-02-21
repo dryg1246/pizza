@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import { useSelector } from "react-redux";
 import { setCategory, setSort, setPageCount } from "../redux/slices/filterSlice";
 import {useNavigate} from "react-router-dom";
@@ -25,6 +25,13 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
     const {categoryId, sortBy, pageCount}: FilterSliceState = useSelector(selectFilter);
     const {items} : any = useSelector(selectItems) ;
 
+    //useEffect(() => {
+    //    PizzaService.getOnlyPizzas().then(res => {
+    //       if (res.data) {
+    //           setItems(res.data);
+    //       }
+    //   })
+    //}, []);
 
     const onClickCategory = useCallback((i: number) => {
         dispatch(setCategory(i));
@@ -61,7 +68,15 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
             dispatch(setPageCount(1));
             dispatch(setCategory(0));
         }
-    }, [dispatch]); // Include dispatch in dependencies
+    }, [dispatch]);
+
+    //useEffect(() => {
+    //    PizzaService.getOnlyPizzas().then(res => {
+    //        if (res.data) {
+    //            setItems(res.data);
+    //        }
+    //    })
+    //}, []);
 
     useEffect(() => {
         if (isMounted.current) {
@@ -75,6 +90,10 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
         isMounted.current = true;
     }, [categoryId, sortBy.sortProperty, pageCount, navigate]);
 
+    useEffect(() => {
+        console.log('items:', items);
+    }, [items]);
+
     return (
         <>
             <div className="content__top">
@@ -82,7 +101,7 @@ export const Home: React.FC<HomeProps> = ({ searchValue }) => {
                 <Sort value={sortBy} onChangeSort={onClickSorting} />
             </div>
             <div className="content__items">
-                    {items.map((item: PizzaItem, index: number) => (
+                {items?.map((item: PizzaItem, index: number) => (
                         <PizzaBlock id={item.id}  />
                     ))}
             </div>

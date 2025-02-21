@@ -42,6 +42,14 @@ export interface HomeProps {
     searchValue: string
 }
 
+export enum CategoryProps {
+    All,
+    Meat,
+    Vegetarian,
+    Grill,
+    Spicy
+}
+
 export type FilterSliceState = {
     categoryId: number;
     pageCount: number;

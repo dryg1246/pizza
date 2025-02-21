@@ -16,15 +16,11 @@ export const CartItem: React.FC<PizzaItem> = ({id, name, price, size }) => {
         dispatch(removeItem({id, size}))
     }
 
-    //const onClickMinus = () => {
-    //    if(count > 1){
-    //        dispatch(minusItem({id, size}))
-    //    }
-    //   // else if (count === 1 && items.length > 0) {
-    //   //     dispatch(removeItem({id, type, size}))
-    //   //     navigate('/')
-    //   // }
-    //}
+
+
+    const onClickMinus = () => {
+            dispatch(minusItem({id, size, price}))
+    }
     return (
         <div className="cart__item">
             <div className="cart__item-img">
@@ -39,7 +35,7 @@ export const CartItem: React.FC<PizzaItem> = ({id, name, price, size }) => {
                 <p>{size}</p>
             </div>
             <div className="cart__item-count">
-                <button  className="button button--outline button--circle cart__item-count-minus">
+                <button onClick={onClickMinus} className="button button--outline button--circle cart__item-count-minus">
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path

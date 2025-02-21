@@ -12,31 +12,29 @@ export const sortPopup: SortItem[] = [
     { name: "alphabet", sortProperty: "title" },
 ];
 
-
- export const Sort: React.FC<SortProps> = React.memo(({ value, onChangeSort }) => {
+export const Sort: React.FC<SortProps> = React.memo(({ value, onChangeSort }) => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const sortRef = useRef<HTMLDivElement>(null);
 
     const handleSortClick = useCallback((selectedSort: SortItem) => {
         onChangeSort(selectedSort);
         setIsVisible(false);
+    }, [onChangeSort]);
+
+    useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) => {
+            if (sortRef.current && !event.composedPath().includes(sortRef.current)){
+                setIsVisible(false);
+            }
+        }
+
+        document.body.addEventListener('click', handleOutsideClick);
+
+        return () => document.body.removeEventListener('click', handleOutsideClick);
     }, []);
 
-
-     useEffect(() => {
-         const handleOutsideClick = (event: MouseEvent) => {
-             if (sortRef.current && !event.composedPath().includes(sortRef.current)){
-                 setIsVisible(false);
-                 console.log('ddd')
-             }
-         }
-
-         document.body.addEventListener ('click', handleOutsideClick);
-
-         return () => document.body.removeEventListener ('click', handleOutsideClick);
-     }, []);
     return (
-        <div ref={sortRef}  className="sort">
+        <div ref={sortRef} className="sort">
             <div className="sort__label">
                 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                     {/* SVG Path for the arrow icon */}
@@ -50,7 +48,6 @@ export const sortPopup: SortItem[] = [
                         {sortPopup.map((obj, i) => (
                             <li
                                 key={i}
-
                                 className={value.sortProperty === obj.sortProperty ? "active" : ""}
                                 onClick={() => handleSortClick(obj)}
                             >
@@ -63,4 +60,3 @@ export const sortPopup: SortItem[] = [
         </div>
     );
 });
-

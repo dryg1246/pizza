@@ -12,8 +12,7 @@ export const Search = () => {
     const updateSearchValue = useCallback(
         debounce((str: string) => {
             setSearchValue(str);
-        }, 1000),
-        []
+        }, 1000), []
     );
 
     const onClickSearch = (event: React.ChangeEvent<HTMLInputElement>) => {

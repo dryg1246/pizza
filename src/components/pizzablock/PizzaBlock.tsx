@@ -3,6 +3,8 @@ import {PizzaItem} from "../../assets/types";
 import {currency} from "../../assets/constans";
 import {Link} from "react-router-dom";
 import PizzaService from "../../services/pizza.service";
+import {addItem} from "../../redux/slices/cartSlice";
+import {useDispatch} from "react-redux";
 
 
 interface PizzaBlockProps {
@@ -13,18 +15,18 @@ export const PizzaBlock = ({ id }: PizzaBlockProps) => {
     const [activeSizeSelector, setActiveSizeSelector] = useState<number>(0);
     const selectorChoice = ["thin", "traditional"];
     const [pizza, setPizza] = useState<PizzaItem | null>(null);
+    const dispatch = useDispatch();
 
- /*    const onClickAdd = () => {
-        const item: PizzaItem = {
-            id,
-            title,
-            price,
-            imageUrl,
-            type: selectorChoice[activeSizeSelector],
-            size: sizes[activeSize],
-        }
+  const onClickAdd = () => {
+      const item: PizzaItem = {
+          id: pizza?.id ?? 0,
+          name: pizza?.name ?? "Unnamed",
+          price: pizza?.price ?? 0,
+          size: selectorChoice[activeSizeSelector] ?? "Unknown",
+          image: pizza?.image ?? null
+      }
         dispatch(addItem(item))
-    } */
+    }
 
     useEffect(() => {
         PizzaService.getPizzaById(id).then(res => {
@@ -72,7 +74,7 @@ export const PizzaBlock = ({ id }: PizzaBlockProps) => {
                 </div>
                 <div className="pizza-block__bottom">
                     <div className="pizza-block__price">{pizza?.price}{currency}</div>
-                    <button
+                    <button onClick={onClickAdd}
                             className="button button--outline button--add">
                         <svg
                             width="12"
