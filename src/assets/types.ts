@@ -6,6 +6,7 @@ export interface PizzaItem {
     price: number;
     size: string;
     image: null;
+    count: number;
 }
 
 export interface FetchPizzasParams {
@@ -76,6 +77,7 @@ export enum Status {
 }
 export interface PizzaSliceState {
     items: PizzaItem[];
+    count: number;
     status: Status;
 }
 

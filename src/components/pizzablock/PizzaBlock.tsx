@@ -23,7 +23,8 @@ export const PizzaBlock = ({ id }: PizzaBlockProps) => {
           name: pizza?.name ?? "Unnamed",
           price: pizza?.price ?? 0,
           size: selectorChoice[activeSizeSelector] ?? "Unknown",
-          image: pizza?.image ?? null
+          image: pizza?.image ?? null,
+          count: pizza?.count ?? 0,
       }
         dispatch(addItem(item))
     }

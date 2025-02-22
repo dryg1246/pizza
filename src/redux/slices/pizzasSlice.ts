@@ -6,6 +6,7 @@ import PizzaService from "../../services/pizza.service";
 const initialState : PizzaSliceState = {
     items: [],
     status: Status.LOADING,
+    count: 0,
 };
 
 
@@ -23,6 +24,9 @@ const pizzasSlice = createSlice({
         setPizzas(state, action: PayloadAction<PizzaItem[]>) {
             state.items = action.payload;
         },
+        setCount(state, action: PayloadAction<number>) {
+            state.count += action.payload;
+        }
     },
 
     extraReducers: (builder) => {
@@ -42,6 +46,6 @@ const pizzasSlice = createSlice({
 });
 
 
-
+export const {setCount, setPizzas} = pizzasSlice.actions;
 
 export default pizzasSlice.reducer;
