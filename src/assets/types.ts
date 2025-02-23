@@ -9,6 +9,7 @@ export interface PizzaItem {
     count: number;
 }
 
+
 export interface FetchPizzasParams {
     categoryId: number;
     sortBy: { sortProperty: string };

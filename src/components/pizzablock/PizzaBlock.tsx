@@ -49,7 +49,7 @@ export const PizzaBlock = ({ id }: PizzaBlockProps) => {
                     <img className="pizza-block__image" src={`/images/${pizza?.image}`} alt="Pizza" onError={(e) => console.error('Image error:', e)} />
                 </Link>
                 <h4 className="pizza-block__title">{pizza?.name}</h4>
-                <p>{pizza?.size}</p>
+                <p className="pizza-block__big-text">{pizza?.size}</p>
                 <div className="pizza-block__selector">
                     <ul>
                         {selectorChoice.map((type, i) => {

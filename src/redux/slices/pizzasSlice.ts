@@ -25,7 +25,7 @@ const pizzasSlice = createSlice({
             state.items = action.payload;
         },
         setCount(state, action: PayloadAction<number>) {
-            state.count += action.payload;
+            state.count = action.payload;
         }
     },
 

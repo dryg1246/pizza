@@ -19,18 +19,19 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addItem(state, { payload }) {
-            const findItem = refactorFindItem(state, payload);
-            if (findItem) {
-                findItem.count += 1;
+            const { id, size } = payload;
+            const item = state.items.find((item) => item.id === id && item.size === size);
+
+            if (item) {
+                item.count += 1;
             } else {
                 state.items.push({
                     ...payload,
                     count: 1
                 });
             }
-            state.totalPrice = state.items.reduce((sum, obj) => {
-                return obj.price * obj.count + sum;
-            }, 0);
+
+            state.totalPrice = state.items.reduce((sum, obj) => obj.price * obj.count + sum, 0);
         },
         minusItem(state, {payload}){
             const findItem = refactorFindItem(state, payload);
