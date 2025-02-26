@@ -3,18 +3,16 @@ import { PizzaItem } from "../../assets/types";
 import { currency } from "../../assets/constans";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, minusItem, removeItem } from "../../redux/slices/cartSlice";
-import { selectItems } from "../../redux/selectors";
+import {selectItems} from "../../redux/selectors";
 
 export const CartItem: React.FC<PizzaItem> = ({ id, name, price, size }) => {
     const dispatch = useDispatch();
-    const cartState = useSelector(selectItems);
-    const cartItems: PizzaItem[] = cartState.items;
-
-    const item = cartItems.find((item: PizzaItem) => item.id === id && item.size === size);
-    const count = item ? item.count : 0;
+    const items = useSelector(selectItems);
+    const count = 2;
+    console.log(items);
 
     const onClickPlus = () => {
-        dispatch(addItem({ id, size }));
+        dispatch(addItem({ id, price }));
     };
 
     const onClickMinus = () => {

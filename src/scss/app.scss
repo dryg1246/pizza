@@ -395,6 +395,64 @@ body {
   align-items: center;
   gap: 10px;
   padding-bottom: 20px
-
 }
+
+.login {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 100vh;
+
+  .login-container {
+    background: #fff;
+    width: 40rem;
+    height: 40rem;
+    border-radius: 15px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+
+
+    .login-container__content{
+      display: flex;
+      flex-direction: column;
+      h1{
+        text-align: center;
+      }
+      .login-container__content-input{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        width: 25rem;
+        height: 100%;
+      }
+      .login-container__content-button{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 17rem;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+.input {
+  border: none;
+  outline: none;
+  font-size: 1rem; // можно изменить под ваши нужды для text-md
+  font-size: 1.25rem; // можно изменить под ваши нужды для text-lg
+  border: 1px solid $green-button;
+  border-radius: 1rem; // можно изменить под ваши нужды
+  padding: 0.75rem 1rem;
+  width: 100%;
+  background-color: #fff;
+}
+
 

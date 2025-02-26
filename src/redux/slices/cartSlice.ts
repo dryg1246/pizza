@@ -7,7 +7,24 @@ const initialState: CartSliceState = {
 }
 
 
-
+//export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
+//    const response = await fetch("http://localhost:5000/api/cart/1");
+//    return await response.json();
+//});
+//
+//export const addToCart = createAsyncThunk("cart/addToCart", async (pizza) => {
+//    await fetch("http://localhost:5000/api/cart/", {
+//        method: "POST",
+//        headers: { "Content-Type": "application/json" },
+//        body: JSON.stringify({ pizzaId: pizza.id, count: 1 }),
+//    });
+//    return pizza;
+//});
+//
+//export const removeFromCart = createAsyncThunk("cart/removeFromCart", async (pizzaId) => {
+//    await fetch(`http://localhost:5000/api/cart/1/remove/${pizzaId}`, { method: "DELETE" });
+//    return pizzaId;
+//});
 const refactorFindItem = (state: CartSliceState, payload: { id: string, type: string, size: string }) => {
     return state.items.find((obj) => {
         return obj.id === payload.id && obj.type === payload.type && obj.size === payload.size;
@@ -19,8 +36,8 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addItem(state, { payload }) {
-            const { id, size } = payload;
-            const item = state.items.find((item) => item.id === id && item.size === size);
+            const { id, price } = payload;
+            const item = state.items.find((item) => item.id === id && item.price === price );
 
             if (item) {
                 item.count += 1;

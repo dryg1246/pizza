@@ -1,7 +1,6 @@
 
 import {useDispatch, useSelector} from "react-redux";
 import {currency} from "../../assets/constans";
-import {clearItem} from "../../redux/slices/cartSlice";
 import {selectCart} from "../../redux/selectors";
 import {Link} from "react-router-dom";
 import {CartSliceState} from "../../assets/types";
@@ -15,9 +14,9 @@ export const CartBlock = () => {
     const totalCount: number = items.reduce((sum: any, obj: any) => obj.count + sum, 0)
 
 
-    const onClickClearItems = () => {
-        dispatch(clearItem())
-    }
+    //const onClickClearItems = () => {
+    //    dispatch(clearItem())
+    //}
 
     if(!totalPrice){
         return <CartEmpty />
@@ -49,7 +48,7 @@ export const CartBlock = () => {
                                 </svg>
                                 Cart
                             </h2>
-                            <div onClick={onClickClearItems} className="cart__clear">
+                            <div className="cart__clear">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2.5 5H4.16667H17.5" stroke="#B6B6B6" strokeWidth="1.2"

@@ -10,7 +10,6 @@ let pizzaLogo = require("../assets/images/logo.webp");
 
 
 export const Header = () => {
-
     const {totalPrice, items} : CartSliceState = useSelector(selectCart);
     const totalCount: number = items.reduce((sum, obj) => obj.count + sum, 0)
 
@@ -61,6 +60,9 @@ export const Header = () => {
                             />
                         </svg>
                         <span>{totalCount}</span>
+                    </Link>
+                    <Link to="/login" className="button button--cart button--login">
+                        Login
                     </Link>
                 </div>}
             </div>

@@ -26,6 +26,17 @@ class PizzaService {
 	getImages() {
 		return axios.get(`https://localhost:7004/api/PizzaHut/GetImages`);
 	}
+	getCart() {
+		return axios.get(`https://localhost:7004/api/PizzaHut/GetCart`);
+	}
+
+	addToCart(cartId: number, count: number = 1) {
+		return axios.get(`https://localhost:7004/api/PizzaHut/AddToCart/${cartId}`);
+	}
+
+	removeFromCart(cartId: number, ) {
+		return axios.get(`https://localhost:7004/api/PizzaHut/RemoveFromCart/${cartId}`);
+	}
 }
 
 export default new PizzaService();

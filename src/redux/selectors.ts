@@ -5,4 +5,4 @@ export const selectCart = (state: RootState) => state.cart;
 
 export const selectFilter = (state: RootState) => state.filter
 
-export const selectItems = (state: RootState) => state.pizza
+export const selectItems = (state: RootState) => state.pizza;
