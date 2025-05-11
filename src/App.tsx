@@ -7,6 +7,7 @@ import Loading from "@ant-design/icons/lib/icons/LoadingOutlined";
 
 import {Home} from "./pages/Home";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const PizzaInfoPages = React.lazy( () => import(/* webpackChunkName: "PizzaInfo" */ './pages/PizzaInfoPages'));
 const NotFound = React.lazy(() => import(/* webpackChunkName: "NotFound" */'./pages/NotFound'));
@@ -26,6 +27,7 @@ const App = () => {
                 <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
                     <Route path="login" element={<Login/>}/>
+                    <Route path="register" element={<Register/>}/>
                     <Route path="/" element={<MainLayout/>}>
                         <Route path="" element={<Home searchValue={searchValue}/>}/>
                         <Route path="*" element={<NotFound/>}/>
